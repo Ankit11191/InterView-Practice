@@ -74,7 +74,6 @@ public class miscellaneousProg {
 					
 					String value1=cell.getStringCellValue();
 					
-				//	miscellaneousProg miscellaneousProg=new miscellaneousProg();
 					String value= miscellaneousProg.readProp(value1);
 					System.out.println(value);
 				}
@@ -85,14 +84,5 @@ public class miscellaneousProg {
 		{
 			e.printStackTrace();
 		}
-		
-
-//		String value= miscellaneousProg.readProp("name");
-//		System.out.println(value);
-		
-
-		
-		
 	}
-
 }
