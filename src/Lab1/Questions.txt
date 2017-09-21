@@ -1,0 +1,17 @@
+1>WAP to Reverse Number 
+2>WAP to count duplicate character in String 
+3>WAP to count no of word in String 
+5>WAP to String is palindrome or not 
+6>WAP to Swap to no with third variable and without third varialble
+7>WAP to remove duplicate element in Array 
+8>WAP to remove dulicate Character in String 
+9>WAP to Bubble Sort 
+10>WAP to insertion Sort 
+11>WAP to Selection Sort 
+12>WAP to Count vowels in String 
+13>WAP to no is binaray or not 
+14>WAP to no is factorial 
+15>WAP to Find largest no in Array 
+16>WAP reverse number 
+17>WAP to find second no of arrayList 
+18>WAP to Sort Array?4>WAP to reverse word of Character
