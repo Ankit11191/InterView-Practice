@@ -13,6 +13,7 @@ public class Prog1 {
 		int Reverse=0;
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("Pelase enter number to be Reverse");
+		
 		int number=scanner.nextInt();
 		while(number!=0)
 		{
