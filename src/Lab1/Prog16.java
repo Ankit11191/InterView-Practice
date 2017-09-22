@@ -29,6 +29,8 @@ public class Prog16 {
 	{
 		int[] number={1,2,3,2,2,222,3,4,2,112,1,1,1,1};
 		System.out.println(MaximumArray(number));
+		
+		
 	}
 
 }
