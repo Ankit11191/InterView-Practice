@@ -3,8 +3,6 @@
  */
 package Lab1;
 
-import javax.swing.plaf.multi.MultiButtonUI;
-
 /**
  * @author Ankit.Mittal
  *
