@@ -3,6 +3,8 @@ package base;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -14,12 +16,15 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ReadFromExcelFile {
-	
-	public static ArrayList<ArrayList<String>> cellval(String FileName) {
 
+	private static Workbook sheet(String FileName)
+	{
+		String file_name=ReadProerties.propsObjectsSplit(FileName);
+		
+		
 		FileInputStream productname = null;
 		try {
-			productname = new FileInputStream(System.getProperty("user.dir") +File.separator+"SourceFiles"+File.separator+"username.xls");
+			productname = new FileInputStream(System.getProperty("user.dir") +File.separator+"SourceFiles"+File.separator+file_name);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -32,7 +37,13 @@ public class ReadFromExcelFile {
 			e.printStackTrace();
 		}
 
-		Sheet sh = wb.getSheetAt(0);
+		return wb;
+	}
+	
+	public static ArrayList<ArrayList<String>> cellval(String FileName) {
+
+		Workbook wb=ReadFromExcelFile.sheet(FileName);
+		Sheet sh= wb.getSheetAt(0);
 		Iterator<Row> itrrow = sh.rowIterator();
 		
 		Row row;
@@ -47,16 +58,62 @@ public class ReadFromExcelFile {
 			if(row.getRowNum()>0)
 			{
 				ArrayList<String> cellvalue=new ArrayList<String>();
-				Iterator<Cell> Itrcell=row.cellIterator();
+				Iterator<Cell> itrCell=row.cellIterator();
 
-				while(Itrcell.hasNext())
+				while(itrCell.hasNext())
 				{
-					cell=Itrcell.next();
+					cell=itrCell.next();
 					cellvalue.add(dataFormatter.formatCellValue(cell));						
 				}	
 			rowvalue.add(cellvalue);
 			}
 		}
 		return rowvalue;
+	}
+	
+	public static void updateCell(String FileName,String rowID)
+	{	
+		String file_name=ReadProerties.propsObjectsSplit(FileName);
+	
+		String filepath = System.getProperty("user.dir") +File.separator+"SourceFiles"+File.separator+file_name;
+		
+		Workbook wb=ReadFromExcelFile.sheet(FileName);
+
+		Sheet sh= wb.getSheetAt(0);
+		
+		Iterator<Row> itrrow = sh.rowIterator();
+		DataFormatter dataFormatter=new DataFormatter();
+		
+		while (itrrow.hasNext()) {
+			Row row = itrrow.next();
+			if(row.getRowNum()>0)
+			{
+				Iterator<Cell> itrCell=row.cellIterator();
+				while(itrCell.hasNext())
+				{
+					Cell cell=itrCell.next();
+					dataFormatter.formatCellValue(cell);
+
+					if(dataFormatter.formatCellValue(cell).equals(rowID))
+					{
+						cell= row.getCell(2);
+						cell.setCellValue("Pass 121");
+						
+						FileOutputStream outputStream = null;
+						try {
+							outputStream = new FileOutputStream(filepath);
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						}
+						try {
+							wb.write(outputStream);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					
+				}
+			}
+		}
 	}
 }
