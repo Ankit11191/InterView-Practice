@@ -11,7 +11,6 @@ public class Driver {
 	
 	public static WebDriver driver1()
 	{
-		
 		ChromeOptions chromeOptions=new ChromeOptions();
 		chromeOptions.addArguments("start-maximized");
 		
