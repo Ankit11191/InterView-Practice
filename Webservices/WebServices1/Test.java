@@ -10,7 +10,6 @@ public class Test extends Logging{
 	public static void main(String[] args) {
 
 		ArrayList<ArrayList<String>> UNPWD = ReadFromExcelFile.cellval("FileName");
-		
 		Login.launcg();
 		for(ArrayList<String> aaa:UNPWD.subList(0, 2))
 		{
